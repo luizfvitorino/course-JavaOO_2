@@ -7,6 +7,6 @@ public class Estagiario extends Funcionario{
     }
     
     public double getBonificacao() {
-        return super.getBonificacao();
+        return super.getBonificacao(1);
     }
 }

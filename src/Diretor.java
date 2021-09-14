@@ -7,7 +7,7 @@ public class Diretor extends Funcionario {
     }
     
     public double getBonificacao() {
-        return super.getBonificacao() + this.getSalario();
+        return super.getBonificacao(2) + this.getSalario();
     }
     
 }
