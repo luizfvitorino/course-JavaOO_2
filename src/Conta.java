@@ -18,7 +18,6 @@ public abstract class Conta {
             this.numero = 0;
         } else this.numero = numero;
         
-        System.out.println("Criando a conta 0" + numero + " na agência " + agencia + " ...");
         total++;
     }
     
