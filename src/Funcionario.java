@@ -1,7 +1,9 @@
 public abstract class Funcionario {
+    
     private String nome;
     private String cpf;
     private double salario;
+    protected String cargo;
     
     public Funcionario(String nome, String cpf, double salario) {
         this.nome = nome;
@@ -28,4 +30,9 @@ public abstract class Funcionario {
     public double getBonificacao(int multiplier) {
         return this.salario * (0.1 * multiplier);
     }
+    
+    public String getCargo() {
+        return cargo;
+    }
+    
 }

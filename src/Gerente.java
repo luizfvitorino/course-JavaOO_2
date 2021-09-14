@@ -1,16 +1,17 @@
 import java.util.Objects;
 
 public class Gerente extends Funcionario{
-    private String cargo = "Gerente";
+    
     private String login;
     private String senha;
     
     public Gerente(String nome, String cpf, double salario) {
         super(nome, cpf, salario);
+        this.cargo = "Gerente";
     }
     
-    public String getCargo() {
-        return cargo;
+    public double getBonificacao() {
+        return super.getBonificacao(1) + this.getSalario();
     }
     
     public void setSenha(String senha) {
@@ -29,10 +30,6 @@ public class Gerente extends Funcionario{
         } else System.out.println("O seu login precisa ter entre 4 e 12 caracteres.");
     }
     
-    public double getBonificacao() {
-        return super.getBonificacao(1) + this.getSalario();
-    }
-    
     public void autenticar(String login, String senha) {
         String caller = this.getCargo() + " @" + this.getLogin();
         
@@ -40,4 +37,5 @@ public class Gerente extends Funcionario{
             System.out.println("Login autorizado: Seja bem-vinde, " + caller + "!");
         } else System.out.println("Login não autorizado: Reveja as suas informações.");
     }
+    
 }
