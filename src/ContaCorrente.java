@@ -4,4 +4,10 @@ public class ContaCorrente extends Conta {
         super(agencia, numero);
     }
     
+    @Override
+    public void sacar(double valor) {
+        valor += 2; // Taxa de R$2 para realizar o saque
+        super.sacar(valor);
+    }
+    
 }
