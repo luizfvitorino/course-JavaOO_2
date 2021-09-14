@@ -1,10 +1,11 @@
-public class Conta {
+public abstract class Conta {
     
     private double saldo;
     private int agencia;
     private int numero;
     private Cliente titular;
     private static int total;
+    protected String tipo;
     
     public Conta (int agencia, int numero) {
         if (agencia < 1001) {
@@ -43,6 +44,10 @@ public class Conta {
     
     public static int getTotal() {
         return total;
+    }
+    
+    public String getTipo() {
+        return tipo;
     }
     
     public void depositar(double valor) {
