@@ -1,10 +1,18 @@
 public class CriaFuncionario {
     public static void main(String[] args) {
-        Gerente gerente001 = new Gerente("Carla Andrade", "333.222.333-22");
-        gerente001.setSalario(4500.00);
-        gerente001.setLogin("candrade");
-        gerente001.setSenha("candrade");
+        Gerente ger001 = new Gerente("Carla Andrade", "333.222.333-22", 4500.00);
+        ger001.setLogin("candrade");
+        ger001.setSenha("candrade");
         
-        gerente001.autenticar("candrade", "candrade");
+        ger001.autenticar("candrade", "candrade");
+        
+        Estagiario est001 = new Estagiario("Joaquim Cesar", "343.004.443-55", 1600);
+        
+        ControleBonificacao controleBoni = new ControleBonificacao();
+        controleBoni.registrarBoni(ger001);
+        controleBoni.registrarBoni(est001);
+    
+        System.out.println("Total de bonificações distribuídas na empresa: "
+                + controleBoni.getTotalBonificacoes());
     }
 }
