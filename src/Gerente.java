@@ -15,24 +15,20 @@ public class Gerente extends Funcionario implements Autenticavel {
     }
     
     @Override
-    public String getLogin() {
-        return this.login;
-    }
-    
-    @Override
     public void setCredenciais(String login, String senha) {
         
         if (login.length() >= 6 && login.length() <= 12) {
             this.login = login;
-        } else {
-            System.out.println("O seu login precisa ter entre 6 e 12 caracteres.");
-        }
+        } else System.out.println("O seu login precisa ter entre 6 e 12 caracteres.");
         
         if (senha.length() >= 6 && senha.length() <= 8) {
             this.senha = senha;
-        } else {
-            System.out.println("A sua senha precisa ter entre 6 e 8 caracteres.");
-        }
+        } else System.out.println("A sua senha precisa ter entre 6 e 8 caracteres.");
+    }
+    
+    @Override
+    public String getLogin() {
+        return this.login;
     }
     
     @Override
@@ -40,7 +36,7 @@ public class Gerente extends Funcionario implements Autenticavel {
         String caller = this.getCargo() + " @" + this.getLogin();
         
         if (Objects.equals(senha, this.senha)) {
-            System.out.println("Autenticando " + caller + "...");
+            System.out.println("Autenticando " + caller + " ...");
             return true;
         } else return false;
     }
