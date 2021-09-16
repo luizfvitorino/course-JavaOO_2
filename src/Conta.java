@@ -1,8 +1,8 @@
-public abstract class Conta {
-    
+public abstract class Conta
+{
     private double saldo;
-    private int agencia;
-    private int numero;
+    private final int agencia;
+    private final int numero;
     private Cliente titular;
     private static int total;
     protected String tipo;

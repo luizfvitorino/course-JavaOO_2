@@ -11,8 +11,13 @@ public class BytebankConta {
         System.out.println("> Agência: " + cc01.getAgencia() + " | Conta: 0" + cc01.getNumero());
         System.out.println("> Saldo disponível: R$" + cc01.getSaldo());
         System.out.println();
-    
-        System.out.print("Total de contas existentes: " + Conta.getTotal());
+        
+        System.out.println("Total de contas existentes: " + Conta.getTotal());
+        System.out.println();
+        
+        CalculadorTributos calcTrib = new CalculadorTributos();
+        calcTrib.registrar(cc01);
+        System.out.println("Total de tributos aplicados no banco: R$" + calcTrib.getTotalTributos());
         
     }
 }
