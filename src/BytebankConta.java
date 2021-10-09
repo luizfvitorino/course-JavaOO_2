@@ -13,11 +13,7 @@ public class BytebankConta {
         System.out.println();
         
         System.out.println("Total de contas existentes: " + Conta.getTotal());
-        System.out.println();
         
-        CalculadorTributos calcTrib = new CalculadorTributos();
-        calcTrib.registrar(cc01);
-        System.out.println("Total de tributos aplicados no banco: R$" + calcTrib.getTotalTributos());
-        
+        cc01.sacar(101.0);
     }
 }

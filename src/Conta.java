@@ -52,20 +52,21 @@ public abstract class Conta
     public void depositar(double valor) {
         if (valor > 0) {
             this.saldo += valor;
-        } else System.out.println("Você deve inserir um valor maior que zero!");
+        } else System.out.println("Você não pode depositar zero reais!");
     }
     
     public void sacar(double valor) {
-        if (this.saldo >= valor) {
-            this.saldo -= valor;
-        } else System.out.println("Saldo insuficiente para realizar o saque.");
+        if (this.saldo < valor) {
+            throw new SaldoInsUncException("Impossível sacar R$" + valor + " - Seu saldo é de R$" + this.saldo);
+            // Verifica se o saldo é menor que o valor informado; caso seja, lança uma exceção
+            // de saldo insuficiente, imprimindo o saldo disponível.
+        }
+        this.saldo -= valor;
     }
     
     public void transferir(double valor, Conta contaDestino) {
-        if (this.saldo >= valor) {
-            this.saldo -= valor;
-            contaDestino.depositar(valor);
-        } else System.out.println("Saldo insuficiente para realizar a transferência.");
+        this.sacar(valor);
+        contaDestino.depositar(valor);
     }
     
 }
