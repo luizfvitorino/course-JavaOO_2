@@ -14,6 +14,10 @@ public class BytebankConta {
         
         System.out.println("Total de contas existentes: " + Conta.getTotal());
         
-        cc01.sacar(101.0);
+        try {
+            cc01.sacar(101.0);
+        } catch(Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

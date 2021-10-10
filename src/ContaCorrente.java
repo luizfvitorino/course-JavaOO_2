@@ -10,7 +10,7 @@ public class ContaCorrente
     }
     
     @Override
-    public void sacar(double valor) {
+    public void sacar(double valor) throws SaldoInsException {
         valor += 2; // Taxa de R$2 para realizar o saque
         super.sacar(valor);
     }
