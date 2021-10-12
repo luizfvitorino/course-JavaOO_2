@@ -8,13 +8,11 @@ public abstract class Conta {
     
     public Conta(int agencia, int numero) {
         if (agencia < 1001) {
-            System.out.println("Número de agência inválida!");
-            this.agencia = 1001;
+            throw new IllegalArgumentException("Número de agência inválida!");
         } else this.agencia = agencia;
         
         if (numero <= 0) {
-            System.out.println("Número de conta inválido!");
-            this.numero = 0;
+            throw new IllegalArgumentException("Número de conta inválido!");
         } else this.numero = numero;
         
         total++;
