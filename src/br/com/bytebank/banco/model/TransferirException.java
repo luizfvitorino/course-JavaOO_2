@@ -7,8 +7,8 @@ package br.com.bytebank.banco.model;
  * @author Luiz Moreira
  * @version 1.0
  */
-public class TransferirException
-        extends Exception {
+public class TransferirException extends Exception {
+    
     public TransferirException() {
         super();
     }

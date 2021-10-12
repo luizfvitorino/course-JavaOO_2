@@ -7,8 +7,8 @@ package br.com.bytebank.banco.model;
  * @author Luiz Moreira
  * @version 1.0
  */
-public class DepositarException
-        extends Exception {
+public class DepositarException extends Exception {
+    
     public DepositarException() {
         super();
     }

@@ -7,7 +7,7 @@ public class BytebankConta {
     public static void main(String[] args) {
         
         ContaCorrente cc01 = new ContaCorrente(1001, 1);
-        cc01.setTitular(new Cliente("Paulo Silveira", "111.111.111-12"));
+        cc01.setTitular(new Cliente("Paulo Silveira", 12345678911L));
         ContaCorrente cc02 = new ContaCorrente(1001, 2);
         
         System.out.println("Total de contas existentes: " + Conta.getTotal());
