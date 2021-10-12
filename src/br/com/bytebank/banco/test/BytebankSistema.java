@@ -1,3 +1,7 @@
+package br.com.bytebank.banco.test;
+
+import br.com.bytebank.banco.model.*;
+
 public class BytebankSistema {
     public static void main(String[] args) {
         Gerente ger001 = new Gerente("Carlos", "455.455.455-55", 4450.0);

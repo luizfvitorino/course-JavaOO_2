@@ -1,3 +1,5 @@
+package br.com.bytebank.banco.model;
+
 public class SistemaInterno {
     private String senha = "cardan22";
     

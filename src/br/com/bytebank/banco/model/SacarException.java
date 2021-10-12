@@ -1,3 +1,5 @@
+package br.com.bytebank.banco.model;
+
 public class SacarException
         extends Exception {
     public SacarException() {

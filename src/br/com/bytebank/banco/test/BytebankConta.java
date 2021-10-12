@@ -1,3 +1,8 @@
+package br.com.bytebank.banco.test;
+
+
+import br.com.bytebank.banco.model.*;
+
 public class BytebankConta {
     public static void main(String[] args) {
         
@@ -6,7 +11,7 @@ public class BytebankConta {
         cc01.depositar(100);
         
         ContaCorrente cc02 = new ContaCorrente(1001, 2);
-    
+        
         System.out.println("Total de contas existentes: " + Conta.getTotal());
         
         System.out.println();
@@ -27,7 +32,7 @@ public class BytebankConta {
         } catch (TransferirException ex) {
             System.out.println(ex.getMessage());
         }
-    
+        
         System.out.println();
         System.out.println("Fim do código");
     }

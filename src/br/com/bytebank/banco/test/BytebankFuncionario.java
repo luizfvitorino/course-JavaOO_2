@@ -1,3 +1,7 @@
+package br.com.bytebank.banco.test;
+
+import br.com.bytebank.banco.model.*;
+
 public class BytebankFuncionario {
     public static void main(String[] args) {
         

@@ -1,3 +1,5 @@
+package br.com.bytebank.banco.model;
+
 import java.util.Objects;
 
 public class Autenticador

@@ -1,17 +1,19 @@
-public class Gerente
+package br.com.bytebank.banco.model;
+
+public class Diretor
         extends Funcionario
         implements Autenticavel
 {
     private final Autenticador autenticador;
     
-    public Gerente(String nome, String cpf, double salario) {
+    public Diretor(String nome, String cpf, double salario) {
         super(nome, cpf, salario);
-        this.cargo = "Gerente";
+        this.cargo = "Diretor";
         this.autenticador = new Autenticador();
     }
     
     public double getBonificacao() {
-        return super.getBonificacao(1) + this.getSalario();
+        return super.getBonificacao(2) + this.getSalario();
     }
     
     @Override
@@ -28,5 +30,4 @@ public class Gerente
     public boolean autenticar(String senha) {
         return this.autenticador.autenticar(senha);
     }
-    
 }

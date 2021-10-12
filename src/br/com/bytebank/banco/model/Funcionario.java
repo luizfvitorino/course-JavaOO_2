@@ -1,3 +1,5 @@
+package br.com.bytebank.banco.model;
+
 public abstract class Funcionario {
     
     private String nome;
