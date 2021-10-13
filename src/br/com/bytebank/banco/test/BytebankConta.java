@@ -1,8 +1,13 @@
 package br.com.bytebank.banco.test;
 
-
 import br.com.bytebank.banco.model.*;
 
+/**
+ * Esta {@code main class} testa as classes relacionadas às contas do Bytebank.
+ *
+ * @author Luiz Moreira
+ * @version 1.0
+ */
 public class BytebankConta {
     public static void main(String[] args) {
         
@@ -12,7 +17,7 @@ public class BytebankConta {
         
         System.out.println("Total de contas existentes: " + Conta.getTotal());
         System.out.println();
-    
+        
         try {
             cc01.depositar(100);
         } catch (DepositarException ex) {

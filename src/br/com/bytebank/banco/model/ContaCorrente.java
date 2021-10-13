@@ -1,20 +1,16 @@
 package br.com.bytebank.banco.model;
 
 /**
- * A classe {@code ContaCorrente} extende a classe {@link Conta}, sendo um modelo de conta instanciável.
+ * Extende a classe {@link Conta}, sendo um modelo instanciável de conta no Bytebank.
  *
  * @author Luiz Moreira
- * @version 1.0
+ * @since 1.0
  */
 public class ContaCorrente extends Conta {
     
     /**
-     * Constrói uma nova conta com o número da agência e o número da conta, usando o construtor
-     * da sua classe mãe, {@link Conta}. Além disso, define o seu {@linkplain Conta#tipo} para
-     * "Conta Corrente".
-     *
-     * @param agencia Número inteiro, maior que 1000, que define a agência.
-     * @param numero Número inteiro positivo que define o número da conta.
+     * Constrói uma nova conta com agência e número de conta, usando o construtor da classe mãe. Além disso, define o
+     * seu {@linkplain Conta#tipo} para "Conta Corrente", e imprime uma mensagem.
      */
     public ContaCorrente(int agencia, int numero) {
         super(agencia, numero);
@@ -24,10 +20,8 @@ public class ContaCorrente extends Conta {
     }
     
     /**
-     * Método que realiza um saque na conta-corrente, adicionando R$2 de taxa fixa ao valor informado
-     * e repassando o valor total ao método herdado/sobreposto da classe mãe ( {@linkplain Conta#sacar(double)} ).
-     *
-     * @param valor Número não inteiro a ser sacado do saldo
+     * Sobrepõe o {@linkplain Conta#sacar(double)}. Realiza um saque adicionando $2 de taxa fixa ao valor informado e
+     * repassando o valor total ao método herdado da classe mãe.
      */
     @Override
     public void sacar(double valor) throws SacarException {

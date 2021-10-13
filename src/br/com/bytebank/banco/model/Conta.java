@@ -1,11 +1,13 @@
 package br.com.bytebank.banco.model;
 
 /**
- * A classe {@code Conta} é a base de todas as contas criadas no Bytebank. É abstrata, logo somente
- * as suas filhas podem ser instanciadas.
+ * Base de todas as contas criadas no Bytebank. A classe é abstrata, logo somente as suas classes filhas podem ser
+ * instanciadas.
+ * <p>As instâncias guardam um objeto {@code Cliente} como titular, saldo, agência, número e
+ * tipo da conta. Além disso, existe um número inteiro estático que guarda o total de contas criadas no Bytebank.
  *
  * @author Luiz Moreira
- * @version 1.0
+ * @since 1.0
  */
 public abstract class Conta {
     private double saldo;
@@ -16,12 +18,12 @@ public abstract class Conta {
     protected String tipo;
     
     /**
-     * Constrói uma nova conta com o número da {@link #agencia} e o {@link #numero} da conta.
-     * Caso a agência seja menor que 1001, ou o número da conta seja menor/igual a zero, uma
+     * Constrói uma nova {@code Conta} com a {@link #agencia} e o {@link #numero} da conta.
+     * <p>Caso a agência seja menor que 1001, ou o número da conta seja menor ou igual a zero, uma
      * {@linkplain IllegalArgumentException} é lançada e a instância não é criada.
      *
-     * @param agencia Número inteiro, maior que 1000, que define a agência.
-     * @param numero  Número inteiro positivo que define o número da conta.
+     * @param agencia inteiro >1000 que define a agência
+     * @param numero  inteiro positivo que define o número da conta
      */
     public Conta(int agencia, int numero) {
         if (agencia < 1001) {
@@ -47,97 +49,81 @@ public abstract class Conta {
         return numero;
     }
     
-    /**
-     * Método que retorna o {@code Cliente} guardado no atributo {@link #titular} da instância.
-     *
-     * @return Objeto do tipo Cliente
-     */
     public Cliente getTitular() {
         return titular;
     }
     
-    /**
-     * Método que define um {@code Cliente} como valor do atributo {@link #titular} da instância.
-     *
-     * @param titular Objeto do tipo Cliente
-     */
     public void setTitular(Cliente titular) {
         this.titular = titular;
     }
     
     /**
-     * Método que retorna o valor do {@code static} {@link #total} da classe da instância. Este é
-     * acrescido de 1 sempre que uma instância nova é criada.
+     * Retorna o atributo {@link #tipo} da instância. O tipo de conta é <b>definido no construtor</b> das classes filhas
+     * desta.
      *
-     * @return Número inteiro estático
-     */
-    public static int getTotal() {
-        return total;
-    }
-    
-    /**
-     * Método que retorna o {@link #tipo} da classe da instância. O "tipo" de conta é definido no {@code constructor}
-     * das classes filhas {@linkplain ContaCorrente} e {@linkplain ContaPoupanca}.
-     *
-     * @return String que define o tipo da conta, e.g. "Conta Corrente"
+     * @return tipo da conta, e.g. "Conta Corrente"
      */
     public String getTipo() {
         return tipo;
     }
     
     /**
-     * Método que realiza um depósito de dinheiro na conta. Caso o valor informado for menor ou igual a zero,
-     * uma nova {@link DepositarException} é lançada, dizendo que o valor é inválido e evitando o depósito.
-     * <p>Caso o valor informado for maior que zero, então o {@linkplain #saldo} da instância é acrescido desse valor.
+     * Retorna o valor do {@code static} {@link #total} da classe instanciada. O total guarda um número inteiro que é
+     * <b>acrescido de 1 sempre que uma instância é criada</b>.
      *
-     * @param valor Número não inteiro a ser depositado no saldo
+     * @return inteiro estático que guarda o total de contas criadas
+     */
+    public static int getTotal() {
+        return total;
+    }
+    
+    /**
+     * Realiza um depósito de dinheiro na conta. Caso o valor informado for maior que zero, o {@linkplain #saldo} da
+     * instância é acrescido desse valor.
+     * <p>Caso contrário, uma nova {@link DepositarException} é lançada, dizendo que o valor é
+     * inválido e interrompendo o depósito.
+     *
+     * @param valor valor a ser depositado
      */
     public void depositar(double valor) throws DepositarException {
-        if (valor <= 0) {
+        if (valor <= 0)
             throw new DepositarException("Impossível depositar R$" + valor + " - Valor inválido!");
-        }
-        
         this.saldo += valor;
     }
     
     /**
-     * Método que realiza um saque na conta, e pode ser sobrescrito. Caso o valor informado for maior que o
-     * {@linkplain #saldo} da instância, uma {@link SacarException} é lançada, dizendo que o saldo da conta
-     * é insuficiente e evitando o saque.
-     * <p>Caso contrário, se o valor informado for válido, ele é então debitado do saldo da instância.
+     * Realiza um saque na conta. Caso o valor informado for maior que o {@linkplain #saldo} da instância, uma {@link
+     * SacarException} é lançada, dizendo que o saldo da conta é insuficiente e interrompendo o saque.
+     * <p>Caso contrário, se o valor informado for válido, ele será debitado do saldo.
      *
-     * @param valor Número não inteiro a ser sacado do saldo
+     * @param valor valor a ser debitado do saldo
      */
     public void sacar(double valor) throws SacarException {
-        if (this.saldo < valor) {
+        if (this.saldo < valor)
             throw new SacarException("Impossível sacar R$" + valor + " - Seu saldo é de R$" + this.saldo);
-        } else if (valor <= 0) {
+        else if (valor <= 0)
             throw new SacarException("Impossível sacar R$" + valor + " - Valor inválido!");
-        }
-        
         this.saldo -= valor;
     }
     
     /**
-     * Método que transfere dinheiro de uma conta para outra. O primeiro parâmetro recebe o valor a ser
-     * transferido, e o segundo recebe a instância de {@code Conta} que receberá a transferência.
-     * <p>Se o valor informado for maior que o {@linkplain #saldo} da instância, uma {@link TransferirException}
-     * é lançada, informando que o saldo é insuficiente e evitando a transferência.</p>
-     * <p>Caso o valor for menor ou igual ao {@linkplain #saldo} da instância, ele é então debitado desse saldo e
-     * depositado na Conta destino. Caso o depósito retorne uma {@linkplain DepositarException}, a mensagem da
-     * exceção é impressa e a transferência é revertida.
+     * Método que transfere dinheiro de uma conta para outra. Se o valor informado for maior que o {@linkplain #saldo}
+     * da instância, uma {@linkplain TransferirException} é lançada, dizendo que o saldo é insuficiente e interrompendo
+     * a transferência.
+     * <p>Caso contrário, o valor informado será <b>debitado do saldo da instância e depositado na
+     * Conta destino</b>. Caso o depósito retorne uma {@linkplain DepositarException}, a mensagem da exceção é exibida e
+     * a transferência é revertida.
      *
-     * @param valor        Número não inteiro a ser transferido de um saldo para outro
-     * @param contaDestino Objeto do tipo Conta
+     * @param valor        valor a ser transferido
+     * @param contaDestino Objeto {@code Conta} a receber o valor transferido
      */
     public void transferir(double valor, Conta contaDestino) throws TransferirException {
-        if (this.saldo < valor) {
+        if (this.saldo < valor)
             throw new TransferirException("Impossível transferir R$" + valor + " - Seu saldo é de R$" + this.saldo);
-        } else if (valor <= 0) {
+        else if (valor <= 0)
             throw new TransferirException("Impossível transferir R$" + valor + " - Valor inválido!");
-        }
-        
         this.saldo -= valor;
+        
         try {
             contaDestino.depositar(valor);
         } catch (DepositarException ex) {

@@ -1,29 +1,32 @@
 package br.com.bytebank.banco.model;
 
 /**
- * A classe {@code Cliente} é o modelo de todos os clientes do Bytebank.
+ * Modelo de todos os clientes do Bytebank. As suas instâncias guardam nome e CPF dos clientes.
  *
  * @author Luiz Moreira
- * @version 1.0
+ * @since 1.0
  */
 public class Cliente {
+    
     private final String nome;
     private final long cpf;
     
     /**
-     * Constrói um novo cliente a partir do seu nome e CPF. Se o CPF informado não tiver exatamente 11 números,
-     * uma {@linkplain IllegalArgumentException} é lançada e a instância não é criada.
+     * Constrói um novo {@code cliente} com nome e CPF.
+     * <p>Se o CPF informado não tiver <b>exatamente 11 números</b> ou for negativo, uma
+     * {@linkplain IllegalArgumentException} é lançada e a instância não é criada.
      *
-     * @param nome String que define o nome do cliente
-     * @param cpf Número inteiro de 11 dígitos que define o CPF do cliente
+     * @param nome define o nome
+     * @param cpf  inteiro de 11 dígitos que define o CPF
      */
     public Cliente(String nome, long cpf) {
-        this.nome = nome;
-        
         String cpfAsString = String.valueOf(cpf);
-        if (cpfAsString.length() != 11) {
-            throw new IllegalArgumentException("CPF inválido: O CPF deve ter 11 números seguidos de um 'L'.");
-        } else this.cpf = cpf;
+        
+        if (cpfAsString.length() != 11 || cpf <= 0)
+            throw new IllegalArgumentException("CPF inválido: insira um número positivo de 11 dígitos.");
+        this.cpf = cpf;
+        
+        this.nome = nome;
     }
     
     public String getNome() {

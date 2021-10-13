@@ -1,24 +1,26 @@
 package br.com.bytebank.banco.model;
 
+/**
+ * Extende a classe {@link Funcionario} e implementa a interface {@link Autenticavel}, sendo um modelo instanciável de
+ * funcionário autenticável. Esta classe representa o cargo de Diretor dentro do Bytebank.
+ *
+ * @author Luiz Moreira
+ * @since 1.0
+ */
 public class Diretor
         extends Funcionario
-        implements Autenticavel
-{
+        implements Autenticavel {
+    
     private final Autenticador autenticador;
     
-    public Diretor(String nome, String cpf, double salario) {
+    /**
+     * Constrói um novo {@code Diretor} usando o construtor da classe mãe. Também define o valor do cargo da instância
+     * para "Diretor" e cria um {@code Autenticador} que fica atrelado a essa instância.
+     */
+    public Diretor(String nome, long cpf, double salario) {
         super(nome, cpf, salario);
         this.cargo = "Diretor";
         this.autenticador = new Autenticador();
-    }
-    
-    public double getBonificacao() {
-        return super.getBonificacao(2) + this.getSalario();
-    }
-    
-    @Override
-    public void setCredenciais(String login, String senha) {
-        this.autenticador.setCredenciais(login, senha);
     }
     
     @Override
@@ -26,6 +28,30 @@ public class Diretor
         return this.autenticador.getLogin();
     }
     
+    /**
+     * Retorna a bonificação do cargo, sendo neste caso o valor padrão com multiplicador 2, adicionado do próprio
+     * salário.
+     *
+     * @return 20% do salário mais o próprio salário
+     */
+    public double getBonificacao() {
+        return super.getBonificacao(2) + this.getSalario();
+    }
+    
+    /**
+     * Método herdado da interface {@linkplain Autenticavel} que define o login e a senha do usuário através de seu
+     * {@link #autenticador}.
+     */
+    @Override
+    public void setCredenciais(String login, String senha) {
+        this.autenticador.setCredenciais(login, senha);
+    }
+    
+    /**
+     * Método herdado da interface {@linkplain Autenticavel} que tenta autenticar o usuário através do seu {@link
+     * #autenticador}, usando a senha informada. Retorna o sucesso ou fracasso na autenticação.
+     * <p>Esse método pode ser usado por um {@linkplain SistemaInterno} para autenticar a instância ao sistema.
+     */
     @Override
     public boolean autenticar(String senha) {
         return this.autenticador.autenticar(senha);
