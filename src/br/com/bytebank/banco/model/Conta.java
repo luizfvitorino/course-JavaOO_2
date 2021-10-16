@@ -79,7 +79,7 @@ public abstract class Conta {
     
     @Override
     public String toString() {
-        return tipo + ": 0" + numero;
+        return tipo + " 0" + numero + " ag. " + agencia;
     }
     
     /**

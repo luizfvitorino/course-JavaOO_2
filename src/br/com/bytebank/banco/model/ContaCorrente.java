@@ -10,13 +10,11 @@ public class ContaCorrente extends Conta {
     
     /**
      * Constrói uma nova conta com agência e número de conta, usando o construtor da classe mãe. Além disso, define o
-     * seu {@linkplain Conta#tipo} para "Conta Corrente", e imprime uma mensagem.
+     * seu {@linkplain Conta#tipo} para "Conta-corrente".
      */
     public ContaCorrente(int agencia, int numero) {
         super(agencia, numero);
-        this.tipo = "Conta Corrente";
-        
-        System.out.println("Criando a " + tipo + " 0" + numero + " na agência " + agencia + "...");
+        this.tipo = "Conta-corrente";
     }
     
     /**
