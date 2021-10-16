@@ -77,6 +77,11 @@ public abstract class Conta {
         return total;
     }
     
+    @Override
+    public String toString() {
+        return tipo + ": 0" + numero;
+    }
+    
     /**
      * Realiza um depósito de dinheiro na conta. Caso o valor informado for maior que zero, o {@linkplain #saldo} da
      * instância é acrescido desse valor.

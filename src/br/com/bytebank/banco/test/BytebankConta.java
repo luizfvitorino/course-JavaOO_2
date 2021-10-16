@@ -25,8 +25,7 @@ public class BytebankConta {
         }
         
         System.out.println();
-        System.out.println("Cliente @" + cc01.hashCode() + " de nome "
-                + cc01.getTitular().getNome() + " e CPF " + cc01.getTitular().getCpf());
+        System.out.println(cc01 + " - " + cc01.getTitular());
         System.out.println("> Agência: " + cc01.getAgencia() + " | Conta: 0" + cc01.getNumero());
         System.out.println("> Saldo disponível: R$" + cc01.getSaldo());
         System.out.println();

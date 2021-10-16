@@ -36,4 +36,9 @@ public class Cliente {
     public long getCpf() {
         return cpf;
     }
+    
+    @Override
+    public String toString() {
+        return "Cliente: " + nome + " de CPF " + cpf;
+    }
 }
