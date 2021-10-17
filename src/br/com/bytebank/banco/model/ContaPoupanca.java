@@ -16,4 +16,20 @@ public class ContaPoupanca extends Conta {
         super(agencia, numero);
         this.tipo = "Conta-poupança";
     }
+    
+    /**
+     * Constrói uma nova conta com agência e número de conta, usando o construtor da classe mãe e definindo o seu tipo,
+     * além de definir o depósito inicial a ser feito na poupança.
+     *
+     * @param depositoInicial o saldo da instância é iniciado com esse valor, caso não hajam exceções
+     */
+    public ContaPoupanca(int agencia, int numero, double depositoInicial) {
+        super(agencia, numero);
+        try {
+            this.depositar(depositoInicial);
+        } catch (DepositarException ex) {
+            System.out.println(ex.getMessage());
+        }
+        this.tipo = "Conta-poupança";
+    }
 }
