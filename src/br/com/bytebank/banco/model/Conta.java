@@ -1,5 +1,7 @@
 package br.com.bytebank.banco.model;
 
+import java.util.Objects;
+
 /**
  * Base de todas as contas criadas no Bytebank. A classe é abstrata, logo somente as suas classes filhas podem ser
  * instanciadas.
@@ -75,6 +77,14 @@ public abstract class Conta {
      */
     public static int getTotal() {
         return total;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        
+        Conta conta = (Conta) o;
+        return agencia == conta.agencia && numero == conta.numero;
     }
     
     @Override
